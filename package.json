@@ -13,6 +13,7 @@
   "author": "Marcello Burattini",
   "license": "ISC",
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
     "gulp": "^4.0.2"
   }
 }
