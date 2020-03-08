@@ -5,8 +5,8 @@
         "node": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+        "eslint:recommended"
+        
     ],
     "globals": {
         "Atomics": "readonly",
@@ -20,7 +20,7 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        
     ],
     "rules": {
     }
