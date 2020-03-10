@@ -2,15 +2,25 @@
 
 function mescola(denari = [])
 {
-    let denariMesc = [];
+    let counter = denari.length - 1;
     
-    let indice1 = Math.floor(Math.random() * 10);
+    while(counter > -1)
+    {
+        let indice = Math.floor(Math.random() * 9);
 
-    let indice2 = Math.floor(Math.random() * 10);
+        let temp = denari[counter];
 
-    denariMesc[indice2] = denari[indice1];
+        denari[counter] = denari[indice];
 
-    denari = denariMesc;
+        denari[indice] = temp;
+
+        counter--;
+    }
+
+
+
+
+
 }
 
 let denari = 
@@ -27,8 +37,3 @@ let denari =
     "re"
 ];
 
-console.log(denari);
-
-mescola(denari);
-
-console.log(denari);
