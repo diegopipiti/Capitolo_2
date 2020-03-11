@@ -45,16 +45,14 @@ let Carta
 
     let colore;
 
-    function Carta(nome, valore, colore)
-    {
-        this.nome = nome;
-
-        this.valore = valore;
-
-        this.colore = colore;
+    class Carta {
+        constructor(nome, valore, colore) {
+            this.nome = nome;
+            this.valore = valore;
+            this.colore = colore;
+        }
     }
-
-    let carta1 = new Carta("10Denari", 10, "denari");
+}
+    let carta1 = Carta("10Denari", 10, "denari");
 
     console.log(carta1);
-}
