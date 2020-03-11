@@ -37,3 +37,24 @@ let denari =
     "re"
 ];
 
+let Carta 
+{
+    let nome;
+
+    let valore;
+
+    let colore;
+
+    function Carta(nome, valore, colore)
+    {
+        this.nome = nome;
+
+        this.valore = valore;
+
+        this.colore = colore;
+    }
+
+    let carta1 = new Carta("10Denari", 10, "denari");
+
+    console.log(carta1);
+}
