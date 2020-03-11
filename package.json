@@ -20,5 +20,7 @@
     "gulp-babel": "^7.0.1",
     "gulp-eslint": "^6.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
 }
