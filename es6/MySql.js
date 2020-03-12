@@ -21,3 +21,10 @@ con.query('SELECT * FROM cartedb.carte', (err,rows) => {
     console.log(`${row.nome} di ${row.colore}`);
   });
 });
+
+const carta = {nome: 'Asso', valore: 1, colore: 'Spade'};
+con.query('insert INTO cartedb.carte SET ?', carta, (err, res) => {
+  if(err) throw err;
+
+  console.log('Last insert ID:', res.insertId);
+});
