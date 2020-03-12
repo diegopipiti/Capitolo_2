@@ -11,4 +11,13 @@ const con = mysql.createConnection({
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
+  console.log("");
+});
+
+con.query('SELECT * FROM cartedb.carte', (err,rows) => {
+  if(err) throw err;
+
+  rows.forEach(row => {
+    console.log(`${row.nome} di ${row.colore}`);
+  });
 });
