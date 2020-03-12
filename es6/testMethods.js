@@ -37,22 +37,33 @@ let denari =
     "re"
 ];
 
-let Carta 
+class Carta 
 {
-    let nome;
+    nome;
 
-    let valore;
+    valore;
 
-    let colore;
+    colore;
 
-    class Carta {
-        constructor(nome, valore, colore) {
-            this.nome = nome;
-            this.valore = valore;
-            this.colore = colore;
-        }
+    constructor(nome, valore, colore)
+    {
+        this.nome = nome;
+
+        this.valore = valore;
+
+        this.colore = colore;
     }
-}
-    let carta1 = Carta("10Denari", 10, "denari");
 
-    console.log(carta1);
+    toString() 
+    {
+        return `Sono il ${this.nome} di ${this.colore}`;
+    }
+
+}
+
+let carta1 = new Carta("Re", 10, "Denari");
+
+console.log(carta1);
+
+console.log(carta1.toString());
+
