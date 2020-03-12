@@ -1,9 +1,10 @@
 'use strict'
 
 /*---------------------------CONNESSIONE------------------------------------------*/
-const mysql = require('mysql');
 
 class connessione{
+
+    mysql = require('mysql');
 
     con;
 
@@ -15,15 +16,12 @@ class connessione{
         user: "marcello",
         password: "maria@79"
         });
-   }
 
-
-    connetti = con.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!");
-        console.log("");
-    });
-
+        connetti = con.connect(function(err) {
+            if (err) throw err;
+            console.log("Connected!");            
+        });
+    }
 }
 
 /*------------------------------------------------------------------------------*/
