@@ -1,11 +1,12 @@
-'use strict';
+'use strict'
+'use mysql'
 
-import { createConnection } from 'mysql';
+const mysql = require('mysql');
 
-const con = createConnection({
+const con = mysql.createConnection({
   host: "localhost",
-  user: "marcello",
-  password: "yojesussss@79"
+  user: "root",
+  password: "jesussss@79"
 });
 
 con.connect(function(err) {
