@@ -45,6 +45,25 @@ class Carta
 
 class Deck
 {
+    mescola = function (denari)
+    {
+        let counter = denari.length - 1;
+        
+        while(counter > -1)
+        {
+            let indice = Math.floor(Math.random() * 9);
+    
+            let temp = denari[counter];
+    
+            denari[counter] = denari[indice];
+    
+            denari[indice] = temp;
+    
+            counter--;
+        }
+    
+    }
+    
     constructor()
     {
         let inizia = initialize;
@@ -80,5 +99,12 @@ function caricaDeck()
 
 
 let nuovoDeck = new Deck();
+
+for(let i = 0; i< 100; i++)
+{
+    nuovoDeck.mescola(deck);
+}
+
+caricaDeck();
 
 

@@ -17,10 +17,6 @@ function mescola(denari = [])
         counter--;
     }
 
-
-
-
-
 }
 
 let denari = 
