@@ -1,40 +1,55 @@
 'use strict'
 
-/*---------------------------CONNESSIONE------------------------------------------*/
 
+function apri()
+{
+    const mysql = require('mysql');
 
-class connessione{
-
-    mysql = require('mysql');
-
-    con;
-
-    connetti;
-    
-    costructor(){
-        con = mysql.createConnection({
-        host: "localhost",
-        user: "marcello",
-        password: "maria@79"
-        });
-    }
-
-    connetti = con.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!");            
+    const con = mysql.createConnection({
+      host: "localhost",
+      user: "marcello",
+      password: "maria@79"
     });
+
+
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        console.log("");
+      });
+
+      return con;
 }
 
-/*------------------------------------------------------------------------------*/
+function ottieniColore(con)
+{
+    con.query('SELECT * FROM cartedb.carte', (err,rows) => {
+        if(err) throw err;
+      
+        rows.forEach(row => {
+          console.log(`${row.nome} di ${row.colore}`);
+        });
+      });
+}
 
 
+class Deck
+{
+    deckAr = [];
 
-/*--------------------------DAO-----------------------------------------------------*/
+    constructor()
+    {
+        this.riempiDeck();
+    }
 
+    riempiDeck()
+    {
+        let con = apri();
 
-/*-----------------------------------------------------------------------------------*/
+        ottieniColore(con);
+    }
 
+}
 
-let georgia = new connessione();
+let mazzo1 = new Deck();
 
-georgia.connetti;
