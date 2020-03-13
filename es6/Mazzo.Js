@@ -14,7 +14,7 @@ function apri()
 
     con.connect(function(err) {
         if (err) throw err;
-        console.log("Connected!");
+        console.log("connected as id " + con.threadId);
         console.log("");
       });
 
@@ -23,15 +23,42 @@ function apri()
 
 function ottieniColore(con)
 {
-    con.query('SELECT * FROM cartedb.carte', (err,rows) => {
+    const colore = "'Denari'";
+
+    con.query(`SELECT * FROM cartedb.carte WHERE colore = ${colore}`, (err,rows) => {
         if(err) throw err;
-      
+
         rows.forEach(row => {
-          console.log(`${row.nome} di ${row.colore}`);
-        });
+            let carta = new Carta(row.nome, row.valore, row.colore);
+            
+          });
+
       });
+
+
 }
 
+function chiudi(con)
+{
+    con.end();
+
+    console.log("Chiusa!");
+}
+
+
+class Carta
+{
+    nome;
+    valore;
+    colore;
+    
+    constructor(nome, valore, colore)
+    {
+        this.nome = nome;
+        this.valore = valore;
+        this.colore = colore;
+    }
+}
 
 class Deck
 {
@@ -44,9 +71,14 @@ class Deck
 
     riempiDeck()
     {
+       
         let con = apri();
 
         ottieniColore(con);
+
+        chiudi(con);
+
+        
     }
 
 }
