@@ -45,66 +45,76 @@ class Carta
 
 class Deck
 {
-    mescola = function (denari)
+    
+    deck = [];
+
+
+    initialize()
     {
-        let counter = denari.length - 1;
+        colori.forEach(element => {
+            for (let i = 0; i<10; i++)
+            {
+                let carta = new Carta(nomi[i], valori[i], element);
+    
+                this.deck.push(carta);
+            }
+        });
+    }
+
+    visualizzaDeck()
+    {
+        this.deck.forEach(element => {
+            console.log(element.toString());
+        });
+    }
+
+    constructor()
+    {
+        let inizia = this.initialize;
+
+        let visualizza = this.visualizzaDeck;
+
+        this.initialize();
+
+        //inizia();
+
+        this.visualizzaDeck();
+    }
+
+    mescola = function ()
+    {
+        let counter = this.deck.length - 1;
         
         while(counter > -1)
         {
             let indice = Math.floor(Math.random() * 9);
     
-            let temp = denari[counter];
+            let temp = this.deck[counter];
     
-            denari[counter] = denari[indice];
+            this.deck[counter] = this.deck[indice];
     
-            denari[indice] = temp;
+            this.deck[indice] = temp;
     
             counter--;
         }
     
     }
-    
-    constructor()
-    {
-        let inizia = initialize;
-
-        let carica = caricaDeck;
-
-        inizia();
-
-        carica();
-    }
 }
 
-let deck = [];
 
-function initialize()
-{
-    colori.forEach(element => {
-        for (let i = 0; i<10; i++)
-        {
-            let carta = new Carta(nomi[i], valori[i], element);
 
-            deck.push(carta);
-        }
-    });
-}
 
-function caricaDeck()
-{
-    deck.forEach(element => {
-        console.log(element.toString());
-    });
-}
+
+
 
 
 let nuovoDeck = new Deck();
 
 for(let i = 0; i< 100; i++)
 {
-    nuovoDeck.mescola(deck);
+    nuovoDeck.mescola();
 }
 
-caricaDeck();
+nuovoDeck.visualizzaDeck();
 
 
