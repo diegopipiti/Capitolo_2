@@ -46,7 +46,7 @@ class Carta
 class Deck
 {
     
-    deck = [];
+    listaCarte = [];
 
 
     initialize()
@@ -56,14 +56,14 @@ class Deck
             {
                 let carta = new Carta(nomi[i], valori[i], element);
     
-                this.deck.push(carta);
+                this.listaCarte.push(carta);
             }
         });
     }
 
     visualizzaDeck()
     {
-        this.deck.forEach(element => {
+        this.listaCarte.forEach(element => {
             console.log(element.toString());
         });
     }
@@ -83,17 +83,17 @@ class Deck
 
     mescola = function ()
     {
-        let counter = this.deck.length - 1;
+        let counter = this.listaCarte.length - 1;
         
         while(counter > -1)
         {
             let indice = Math.floor(Math.random() * 9);
     
-            let temp = this.deck[counter];
+            let temp = this.listaCarte[counter];
     
-            this.deck[counter] = this.deck[indice];
+            this.listaCarte[counter] = this.listaCarte[indice];
     
-            this.deck[indice] = temp;
+            this.listaCarte[indice] = temp;
     
             counter--;
         }
@@ -102,19 +102,96 @@ class Deck
 }
 
 
+class Player
+{
+    nome;
+    punteggio;
+    mano;
+
+    constructor(nome)
+    {
+        this.nome = nome;
+
+        this.punteggio = 0;
+
+        this.mano = new Array();
+    }
+
+    toString()
+    {
+        return this.nome;
+    }
+}
 
 
+class Partita
+{
+    player1;
+
+    player2;
+
+    vincitore;
+
+    listaCarte;
+
+    constructor(player1, player2, listaCarte)
+    {
+        this.player1 = player1;
+
+        this.player2 = player2;
+
+        this.listaCarte = listaCarte;
+    }
+
+    chiVince()
+    {
+        if(this.player1.punteggio > this.player2.punteggio)
+            {this.vincitore = this.player1;}
+        else if(this.player1.punteggio == this.player2.punteggio)
+            {this.vincitore = undefined;}
+        else
+            {this.vincitore = this.player2;}
+
+        console.log(`The Winner is: ${this.vincitore}`);
+    }
+
+    gioca()
+    {
+        this.player1.mano = slice.this.listaCarte(0,3);
+
+        this.player2.mano = this.listaCarte[1];
+
+        console.log(`${this.player1.nome}: ${this.listaCarte[0]}`);
+
+        console.log(`${this.player2.nome}: ${this.listaCarte[1]}`);
+
+        this.chiVince();
 
 
+        
+
+    }
+
+}
 
 
 let nuovoDeck = new Deck();
 
-for(let i = 0; i< 100; i++)
+
+for(let i = 0; i< 1000; i++)
 {
     nuovoDeck.mescola();
 }
 
-nuovoDeck.visualizzaDeck();
+
+let playerNuovo1 = new Player("Achille");
+
+let playerNuovo2 = new Player("Ettore");
+
+let partitaNuova = new Partita(playerNuovo1, playerNuovo2, nuovoDeck.listaCarte);
+
+partitaNuova.gioca();
+
+
 
 
