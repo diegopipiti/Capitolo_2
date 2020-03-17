@@ -2,6 +2,8 @@
 
 const r1 = require('readline-sync');
 
+const massimo = 21;
+
 
 let nomi = 
 [
@@ -51,6 +53,8 @@ class Deck
     
     listaCarte = [];
 
+    indice = 0;
+
 
     initialize()
     {
@@ -98,12 +102,12 @@ class Deck
     }
 }
 
-
 class Player
 {
     nome;
     punteggio;
     mano;
+    totale;
 
     constructor(nome)
     {
@@ -112,6 +116,8 @@ class Player
         this.punteggio = 0;
 
         this.mano = new Array();
+
+        this.totale = 0;
     }
 
     toString()
@@ -129,21 +135,35 @@ class Partita
 
     vincitore;
 
-    listaCarte;
+    deck;
 
     r1;
 
-    constructor(player1, player2, listaCarte)
+    constructor(player1, player2, deck)
     {
         this.player1 = player1;
 
         this.player2 = player2;
 
-        this.listaCarte = listaCarte;
+        this.deck = deck;
     }
 
-    chiVince()
+    chiVince(sballato1, sballato2)
     {
+        if(sballato1)
+        {
+            this.vincitore = this.player2;
+
+            return;
+        }
+
+        if(sballato2)
+        {
+            this.vincitore = this.player1;
+
+            return;
+        }
+        
         if(this.player1.punteggio > this.player2.punteggio)
             {this.vincitore = this.player1;}
         else if(this.player1.punteggio == this.player2.punteggio)
@@ -151,16 +171,13 @@ class Partita
         else
             {this.vincitore = this.player2;}
 
-        console.log(`The Winner is: ${this.vincitore}`);
+        
+            console.log(`The Winner is: ${this.vincitore}`);
     }
 
-
-    gioca()
+    aggiungiCarta(player)
     {
-        
-        let risposta = "n";
-
-        let conta = 0;
+        let risposta = "s";
         
         while(risposta != "n")
         {
@@ -168,14 +185,38 @@ class Partita
             
             if(risposta == "s")
             {
-                this.player1.mano.push(this.listaCarte[conta]);
-        
-                console.log(this.player1.mano);
+                let cartaPresa = this.deck.listaCarte[this.deck.indice];
+                
+                player.mano.push(cartaPresa);
 
-                conta++;
+                player.totale += cartaPresa.valore;
+        
+                console.log(`Mano di ${player}: ${player.mano} \n Totale: ${player.totale}`);
+
+                if(player.totale > massimo)
+                {
+                    console.log("Hai sballato!!!");
+
+                    return true;
+                }
+
+                this.deck.indice++;
             }
 
         }
+
+        return false;
+    }
+    
+    gioca()
+    {
+        let sballatoP1 = this.aggiungiCarta(playerNuovo1);
+
+        let sballatoBanco = this.aggiungiCarta(banco);
+
+        this.chiVince(sballatoP1, sballatoBanco);
+
+        
 
     }
 
@@ -191,10 +232,10 @@ for(let i = 0; i< 1000; i++)
 }
 
 
-let playerNuovo1 = new Player("Achille");
+let playerNuovo1 = new Player("Ettore");
 
-let playerNuovo2 = new Player("Ettore");
+let banco = new Player("Achille");
 
-let partitaNuova = new Partita(playerNuovo1, playerNuovo2, nuovoDeck.listaCarte);
+let partitaNuova = new Partita(playerNuovo1, banco, nuovoDeck);
 
 partitaNuova.gioca();
