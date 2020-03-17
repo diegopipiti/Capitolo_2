@@ -146,6 +146,8 @@ class Partita
         this.player2 = player2;
 
         this.deck = deck;
+
+        this.vincitore = this.player1;
     }
 
     chiVince(sballato1, sballato2)
@@ -164,15 +166,13 @@ class Partita
             return;
         }
         
-        if(this.player1.punteggio > this.player2.punteggio)
+        if(this.player1.totale > this.player2.totale)
             {this.vincitore = this.player1;}
-        else if(this.player1.punteggio == this.player2.punteggio)
+        else if(this.player1.totale == this.player2.totale)
             {this.vincitore = undefined;}
         else
             {this.vincitore = this.player2;}
 
-        
-            console.log(`The Winner is: ${this.vincitore}`);
     }
 
     aggiungiCarta(player)
@@ -214,9 +214,9 @@ class Partita
 
         let sballatoBanco = this.aggiungiCarta(banco);
 
-        this.chiVince(sballatoP1, sballatoBanco);
+        this.chiVince(false, false);
 
-        
+        console.log(`The Winner is: ${this.vincitore}`);
 
     }
 
