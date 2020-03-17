@@ -1,11 +1,7 @@
 'use strict'
 
-const readline = require('readline');
+const r1 = require('readline-sync');
 
-const r1 = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
 
 let nomi = 
 [
@@ -77,13 +73,9 @@ class Deck
 
     constructor()
     {
-        let inizia = this.initialize;
-
-        let visualizza = this.visualizzaDeck;
-
         this.initialize();
 
-        this.visualizzaDeck();
+        //this.visualizzaDeck();
     }
 
     mescola = function ()
@@ -162,23 +154,28 @@ class Partita
         console.log(`The Winner is: ${this.vincitore}`);
     }
 
+
     gioca()
     {
         
-        r1.question('Vuoi una carta? \n s = sì, n=no \n', (answer) => {
+        let risposta = "n";
+
+        let conta = 0;
+        
+        while(risposta != "s")
+        {
+            risposta = r1.question('Vuoi una carta? \n s = sì, n=no \n');
             
-            if(answer == "s")
+            if(risposta == "s")
             {
-                this.player1.mano = this.listaCarte[0];
-    
+                this.player1.mano.push(this.listaCarte[conta]);
+        
                 console.log(this.player1.mano);
+
+                conta++;
             }
 
-            this.chiVince();
-          
-            r1.close();
-          });
-
+        }
 
     }
 
