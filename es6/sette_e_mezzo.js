@@ -214,7 +214,7 @@ class Partita
 
         let sballatoBanco = this.aggiungiCarta(banco);
 
-        this.chiVince(false, false);
+        this.chiVince(sballatoP1, sballatoBanco);
 
         console.log(`The Winner is: ${this.vincitore}`);
 
