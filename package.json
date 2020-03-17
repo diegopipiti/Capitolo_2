@@ -21,6 +21,7 @@
     "gulp-eslint": "^6.0.0"
   },
   "dependencies": {
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "readline-sync": "^1.4.10"
   }
 }
