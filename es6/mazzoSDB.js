@@ -76,8 +76,6 @@ class Deck
 
         this.initialize();
 
-        //inizia();
-
         this.visualizzaDeck();
     }
 
@@ -157,13 +155,13 @@ class Partita
 
     gioca()
     {
-        this.player1.mano = slice.this.listaCarte(0,3);
+        this.player1.mano = this.listaCarte.slice(0,3);
 
-        this.player2.mano = this.listaCarte[1];
+        this.player2.mano = this.listaCarte.slice(3,6);
 
-        console.log(`${this.player1.nome}: ${this.listaCarte[0]}`);
+        console.log(`${this.player1.nome}: ${this.player1.mano}`);
 
-        console.log(`${this.player2.nome}: ${this.listaCarte[1]}`);
+        console.log(`${this.player2.nome}: ${this.player2.mano}`);
 
         this.chiVince();
 
