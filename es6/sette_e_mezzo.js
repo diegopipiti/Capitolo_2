@@ -162,9 +162,9 @@ class Partita
 
         let conta = 0;
         
-        while(risposta != "s")
+        while(risposta != "n")
         {
-            risposta = r1.question('Vuoi una carta? \n s = sì, n=no \n');
+            risposta = r1.question('Vuoi una carta? \n s = si, n=no \n');
             
             if(risposta == "s")
             {
